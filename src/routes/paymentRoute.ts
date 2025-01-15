@@ -5,47 +5,47 @@
 
 
 
-// import express from "express";
-// import Stripe from "stripe";
+import express from "express";
+import Stripe from "stripe";
 
-// const router = express.Router();
-// const stripe = new Stripe(process.env.STRIPE_SECRET_KEY! );
+const router = express.Router();
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY! );
 
-// router.post("/create-checkout-session", async (req, res) => {
-//   const { items } = req.body;
+router.post("/create-checkout-session", async (req, res) => {
+  const { items } = req.body;
 
-//   try {
-//     const session = await stripe.checkout.sessions.create({
-//         payment_method_types: ["card"],
-//         line_items: [
-//           {
-//             price_data: {
-//               currency: "usd",
-//               product_data: {
-//                 name: "Your Food Order",
-//               },
-//               unit_amount: 5000, // 50 USD in cents
-//             },
-//             quantity: 1,
-//           },
-//         ],
-//         mode: "payment",
-//         success_url: "http://localhost:5173/success?session_id={CHECKOUT_SESSION_ID}",
-//         cancel_url: "http://localhost:5173/cancel",
-//         // metadata: {
-//         //   userId: userId, // Include userId
-//         //   orderId: orderId, // Include orderId
-//         // },
-//       });
+  try {
+    const session = await stripe.checkout.sessions.create({
+        payment_method_types: ["card"],
+        line_items: [
+          {
+            price_data: {
+              currency: "usd",
+              product_data: {
+                name: "Your Food Order",
+              },
+              unit_amount: 5000, // 50 USD in cents
+            },
+            quantity: 1,
+          },
+        ],
+        mode: "payment",
+        success_url: "http://localhost:5173/success?session_id={CHECKOUT_SESSION_ID}",
+        cancel_url: "http://localhost:5173/cancel",
+        // metadata: {
+        //   userId: userId, // Include userId
+        //   orderId: orderId, // Include orderId
+        // },
+      });
 
-//     res.json({ url: session.url });
-//   } catch (error) {
-//     console.error("Error creating checkout session", error);
-//     res.status(500).send("Internal Server Error");
-//   }
-// });
+    res.json({ url: session.url });
+  } catch (error) {
+    console.error("Error creating checkout session", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
-// export default router;
+export default router;
 
 
 
@@ -62,7 +62,7 @@
 
 // const prisma = new PrismaClient();
 // const router = express.Router();
-// // const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+// const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 // const createOrderAndPaymentSession = async (userId: string, orderItems: any[]) => {
 //   if (!userId || !orderItems.length) {

@@ -11,7 +11,7 @@ const cors_1 = __importDefault(require("cors"));
 const isAdmin_1 = require("./middleware/isAdmin");
 const restaurantRoute_1 = __importDefault(require("./routes/restaurantRoute"));
 const cartRoute_1 = __importDefault(require("./routes/cartRoute"));
-const paymentRoute_1 = __importDefault(require("./routes/paymentRoute"));
+// import paymentRoute from "./routes/paymentRoute";
 // import paymentRoute from "./routes/paymentRoute"
 const PORT = 8080;
 const app = (0, express_1.default)();
@@ -23,7 +23,7 @@ app.use(express_1.default.json());
 app.use('/api/v1/user', userRoute_1.default);
 app.use('/', restaurantRoute_1.default);
 app.use('/foodRoute', foodRoute_1.default);
-app.use("/api/payment", paymentRoute_1.default);
+// app.use("/api/payment", paymentRoute);
 app.use('/admin', adminRoute_1.default);
 app.use('/isAdmin', isAdmin_1.isAdmin);
 app.use('/api', cartRoute_1.default);
